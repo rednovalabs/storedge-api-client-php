@@ -233,7 +233,7 @@ class SDK {
       try {
         return $this->get($base_url . $facility_uuid . '/leads' . $query);
       } catch (BaseException $e) {
-        echo $e->getMessage();
+        $this->logErrorAndShowMessage($e);
       }
     }
 
@@ -242,7 +242,7 @@ class SDK {
       try {
         return $this->post($base_url . $facility_uuid . '/leads', $data);
       } catch (BaseException $e) {
-        echo $e->getMessage();
+        $this->logErrorAndShowMessage($e);
       }
     }
 
@@ -251,7 +251,7 @@ class SDK {
       try {
         return $this->delete($base_url . $facility_uuid . '/leads/' . $lead_uuid, $params);
       } catch (BaseException $e) {
-        echo $e->getMessage();
+        $this->logErrorAndShowMessage($e);
       }
 
     }
@@ -262,7 +262,7 @@ class SDK {
       try {
         return $this->patch($base_url . $facility_uuid . '/tenants/' . $tenant_uuid, $data);
       } catch (BaseException $e) {
-        echo $e->getMessage();
+        $this->logErrorAndShowMessage($e);
       }
 
     }
@@ -272,7 +272,7 @@ class SDK {
       try {
         return $this->put($base_url . $facility_uuid . '/tenants/' . $tenant_uuid, $data);
       } catch (BaseException $e) {
-        echo $e->getMessage();
+        $this->logErrorAndShowMessage($e);
       }
     }
 
@@ -281,7 +281,7 @@ class SDK {
       try {
         return $this->post($base_url . $facility_uuid . '/tenants/' . $tenant_uuid . '/sign_up', $data);
       } catch (BaseException $e) {
-        echo $e->getMessage();
+        $this->logErrorAndShowMessage($e);
       }
     }
 
@@ -290,7 +290,7 @@ class SDK {
       try {
         return $this->put($base_url . $facility_uuid . '/tenants/' . $tenant_uuid . '/change_password', $data);
       } catch (BaseException $e) {
-        echo $e->getMessage();
+        $this->logErrorAndShowMessage($e);
       }
     }
 
@@ -304,7 +304,7 @@ class SDK {
       try {
         return $this->get($base_url . $facility_uuid . '/unit_groups' . $query);
       } catch (BaseException $e) {
-        echo $e->getMessage();
+        $this->logErrorAndShowMessage($e);
       }
     }
 
@@ -317,7 +317,7 @@ class SDK {
       try {
         return $this->get($base_url . $facility_uuid . '/unit_groups/' . $unit_group_uuid . $query);
       } catch (BaseException $e) {
-        echo $e->getMessage();
+        $this->logErrorAndShowMessage($e);
       }
     }
 
@@ -330,7 +330,7 @@ class SDK {
       try {
         return $this->get($base_url . $facility_uuid . '/unit_groups/' . $unit_group_uuid . '/units' . $query);
       } catch (BaseException $e) {
-        echo $e->getMessage();
+        $this->logErrorAndShowMessage($e);
       }
     }
 
@@ -344,7 +344,7 @@ class SDK {
       try {
         return $this->get($base_url . $facility_uuid . '/units' . $query);
       } catch (BaseException $e) {
-        echo $e->getMessage();
+        $this->logErrorAndShowMessage($e);
       }
     }
 
@@ -357,7 +357,7 @@ class SDK {
       try {
         return $this->get($base_url . $facility_uuid . '/units/available' . $query);
       } catch (BaseException $e) {
-        echo $e->getMessage();
+        $this->logErrorAndShowMessage($e);
       }
     }
 
@@ -370,8 +370,14 @@ class SDK {
       try {
         return $this->get($base_url . $facility_uuid . '/units/' . $unit_uuid . $query);
       } catch (BaseException $e) {
-        echo $e->getMessage();
+        $this->logErrorAndShowMessage($e);
       }
+    }
+
+    private function logErrorAndShowMessage($e)
+    {
+      error_log($e->getMessage());
+      echo("Something went wrong with API request. Check error log for details.\n");
     }
 
 }
