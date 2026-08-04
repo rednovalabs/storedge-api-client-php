@@ -2,6 +2,7 @@
     "name": "rednovalabs/storedge-sdk-php",
     "description": "Guzzle client wrapper for Storedge API",
     "require": {
+        "php": "^7.2.5 || ^8.0",
         "guzzlehttp/guzzle": "^7.15.1",
         "guzzlehttp/oauth-subscriber": "^0.9.5"
     },
